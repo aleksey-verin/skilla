@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import fetchRequest from '../services/fetch'
 import Loader from './commonUI/Loader'
 import Filtering from './MainContent/Filtering'
@@ -56,7 +56,23 @@ const MainContent = () => {
     // onRequestFirst(periodForRequest.date_start, periodForRequest.date_end, offset)
   }
 
-  const loader = loading ? <Loader /> : null
+  useEffect(() => {
+    const onScroll = (e) => {
+      if (e.target.documentElement) {
+        const { scrollTop, scrollHeight, clientHeight } = e.target.documentElement
+        if (scrollTop + clientHeight === scrollHeight && totalRows > offset + 50) {
+          setOffset((offset) => offset + 50)
+        }
+      }
+    }
+
+    window.addEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  })
+
+  // ref={listInnerRef} onScroll={onScroll}
 
   return (
     <main>
@@ -64,11 +80,11 @@ const MainContent = () => {
       <Filtering />
       {/* <Loader /> */}
       <SpreadSheet data={data} loading={loading} />
-      {totalRows > offset + 50 ? (
+      {/* {totalRows > offset + 50 ? (
         <button onClick={getMoreData} type='submit'>
           Click
         </button>
-      ) : null}
+      ) : null} */}
     </main>
   )
 }
