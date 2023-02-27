@@ -1,10 +1,10 @@
 import React from 'react'
 import ImgArrow from '../images/ImgArrow'
 
-const Company = () => {
+const Company = ({ dataForHeader }) => {
   return (
-    <div className="company">
-      <div className="company-name">ИП Сидорова Александра Михайловна</div>
+    <div className='company'>
+      <div className='company-name'>{dataForHeader}</div>
       <ImgArrow />
     </div>
   )

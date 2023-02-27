@@ -7,16 +7,16 @@ import Parameters from './Header/Parameters'
 import Company from './Header/Company'
 import User from './Header/User'
 
-const Header = () => {
+const Header = ({ dataForHeader }) => {
   return (
-    <header className="header">
-      <div className="wrapper">
+    <header className='header'>
+      <div className='wrapper'>
         <CurrentDate />
         <Parameters />
-        <div className="search">
+        <div className='search'>
           <Search />
         </div>
-        <Company />
+        <Company dataForHeader={dataForHeader} />
         <User />
       </div>
     </header>

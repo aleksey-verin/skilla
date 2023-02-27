@@ -5,7 +5,7 @@ import Filtering from './MainContent/Filtering'
 import Info from './MainContent/Info'
 import SpreadSheet from './MainContent/SpreadSheet'
 
-const MainContent = () => {
+const MainContent = ({ getDataForHeader }) => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [totalRows, setTotalRows] = useState(null)
@@ -27,7 +27,6 @@ const MainContent = () => {
     if (!periodForRequest.date_start || !periodForRequest.date_end) return
     onRequestFirst(periodForRequest.date_start, periodForRequest.date_end)
   }, [periodForRequest])
-  // debugger
 
   useEffect(() => {
     const onRequestNext = async (start, end, offset) => {
@@ -42,49 +41,38 @@ const MainContent = () => {
     onRequestNext(periodForRequest.date_start, periodForRequest.date_end, offset)
   }, [offset])
 
-  // useEffect(() => {
-  //   if (!periodForRequest) return
-  //   onRequestFirst(periodForRequest.date_start, periodForRequest.date_end, offset)
-  // }, [periodForRequest])
-
   const getPeriodForRequest = (start, end) => {
     setPeriodForRequest({ date_start: start, date_end: end })
-  }
-
-  const getMoreData = () => {
-    setOffset((offset) => offset + 50)
-    // onRequestFirst(periodForRequest.date_start, periodForRequest.date_end, offset)
   }
 
   useEffect(() => {
     const onScroll = (e) => {
       if (e.target.documentElement) {
         const { scrollTop, scrollHeight, clientHeight } = e.target.documentElement
-        if (scrollTop + clientHeight === scrollHeight && totalRows > offset + 50) {
+        if (scrollTop + clientHeight >= scrollHeight - 50 && totalRows > offset + 50) {
+          if (loading) return
           setOffset((offset) => offset + 50)
         }
       }
     }
-
     window.addEventListener('scroll', onScroll)
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
   })
 
-  // ref={listInnerRef} onScroll={onScroll}
+  useEffect(() => {
+    if (!data) return
+    const partnerName = data[0]?.partner_data.name
+    if (!partnerName) return
+    getDataForHeader(partnerName)
+  }, [data])
 
   return (
     <main>
       <Info loading={loading} getPeriodForRequest={getPeriodForRequest} />
       <Filtering />
-      {/* <Loader /> */}
       <SpreadSheet data={data} loading={loading} />
-      {/* {totalRows > offset + 50 ? (
-        <button onClick={getMoreData} type='submit'>
-          Click
-        </button>
-      ) : null} */}
     </main>
   )
 }
