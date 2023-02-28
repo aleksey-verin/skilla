@@ -644,14 +644,30 @@ main {
       &:hover {
         background-color: #8a9cbc;
       }
-    }
-    &-download {
-      cursor: pointer;
-      &:hover svg path {
-        fill: #005ff8;
-        transition: all 0.3s ease 0s;
+      &.full {
+        background-color: #8a9cbc;
+      }
+      &__going {
+        // width: 10%;
+        height: 4px;
+        border-radius: 2px;
+        background-color: #005ff8;
       }
     }
+    &-download {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+.download-hover {
+  cursor: pointer;
+  &:hover svg path {
+    fill: #005ff8;
+    transition: all 0.3s ease 0s;
   }
 }
 
@@ -670,7 +686,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 2px;
+  // padding-left: 2px;
   cursor: pointer;
   &:hover {
     background-color: #005ff8;
@@ -679,6 +695,11 @@ main {
   &:hover svg path {
     fill: #fff;
     transition: all 0.3s ease 0s;
+  }
+  &__pause {
+    width: 10px;
+    height: 10px;
+    background-color: #0000f4;
   }
 }
 
@@ -887,6 +908,7 @@ main {
   width: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 50px;
   align-items: center;
   &-image {

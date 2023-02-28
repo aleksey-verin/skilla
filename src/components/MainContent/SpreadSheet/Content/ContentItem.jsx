@@ -15,27 +15,29 @@ import MessageError from './Score/MessageError'
 import Recognize from './Score/Recognize'
 import ImgClose from '../../../images/ImgClose'
 import fetchAudio from '../../../../services/fetchAudio'
+import ImgLoader from '../../../images/ImgLoader'
 
-const ContentItem = ({
-  id,
-  in_out,
-  date,
-  person_id,
-  person_avatar,
-  from_number,
-  to_number,
-  contact_name,
-  contact_company,
-  from_site,
-  source,
-  status,
-  errors,
-  results,
-  time,
-  allChecked,
-  record,
-  partnership_id,
-}) => {
+const ContentItem = ({ data, allChecked }) => {
+  const {
+    id,
+    in_out,
+    date,
+    person_id,
+    person_avatar,
+    from_number,
+    to_number,
+    contact_name,
+    contact_company,
+    from_site,
+    source,
+    status,
+    errors,
+    results,
+    time,
+    record,
+    partnership_id,
+  } = data
+
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -51,23 +53,61 @@ const ContentItem = ({
   const avatarScr = person_avatar ? person_avatar : noavatar
   const phoneNumber = in_out ? from_number : to_number
   const newPhoneCall = formatPhoneNumber(phoneNumber)
-  // console.log(durationCall, record)
 
-  let audioPlayer = null
+  const [audioPlayer, setAudioPlayer] = useState(null)
+  const [playing, setPlaying] = useState(false)
+  const [loadingAudio, setLoadingAudio] = useState(false)
+
+  const [styleForPlaying, setStyleForPlaying] = useState({ width: '0%' })
+  const [duration, setDuration] = useState(null)
+  const [currentTime, setCurrentTime] = useState(0)
+
   const getAudio = async () => {
     if (!audioPlayer) {
-      const audioUrl = await fetchAudio()
-      audioPlayer = new Audio(audioUrl)
-      audioPlayer.play()
-      // playButton.textContent = 'Pause';
-    } else if (audioPlayer.paused) {
-      audioPlayer.play()
-      // playButton.textContent = 'Pause';
-    } else {
-      audioPlayer.pause()
-      // playButton.textContent = 'Play';
+      setLoadingAudio(true)
+      const audioUrl = await fetchAudio(record, partnership_id)
+      setLoadingAudio(false)
+      setAudioPlayer(new Audio(audioUrl))
     }
   }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(Math.floor(audioPlayer.currentTime))
+    }, 1000)
+    if (!playing) clearInterval(timer)
+  }, [playing])
+
+  useEffect(() => {
+    const percent = ((currentTime / duration) * 100).toFixed(0)
+    setStyleForPlaying({ width: `${percent}%` })
+  }, [currentTime])
+
+  const playAudio = () => {
+    if (!audioPlayer) return
+    if (audioPlayer.paused) {
+      audioPlayer.play()
+      setDuration(Math.floor(audioPlayer.duration))
+      setCurrentTime(Math.floor(audioPlayer.currentTime))
+      setPlaying(true)
+    } else {
+      audioPlayer.pause()
+      setPlaying(false)
+    }
+  }
+
+  const clearAudio = () => {
+    audioPlayer.pause()
+    setAudioPlayer(null)
+    setPlaying(false)
+    setStyleForPlaying({ width: '0%' })
+    setDuration(null)
+    setCurrentTime(0)
+  }
+
+  // const styleLoading = {
+  //   width: '20%',
+  // }
 
   return (
     <div className='content-item'>
@@ -89,9 +129,6 @@ const ContentItem = ({
             <ImgWeb />
           </div>
         ) : null}
-        {/* <div className='img-web'>
-          <ImgWeb />
-        </div> */}
         <div className='img-phone'>
           <ImgPhone />
         </div>
@@ -108,36 +145,42 @@ const ContentItem = ({
         {time ? <Recognize /> : null}
         {/* <Score score='perfect' /> */}
       </div>
-      <div className='content-item__duration eight duration-open '>
+      <div
+        className='content-item__duration eight duration-open'
+        style={audioPlayer ? { display: 'block' } : {}}
+      >
         {durationCall && record ? (
           <div className='content-item__duration-block'>
             <div className='content-item__duration-digits'>{durationCall}</div>
-            <div className='content-item__duration-play' onClick={getAudio}>
-              <ImgPlay />
+            <div className='content-item__duration-play' onClick={playAudio}>
+              <ImgPlay playing={playing} audioPlayer={audioPlayer} />
             </div>
-            <div className='content-item__duration-stripe'></div>
-            <div className='content-item__duration-download'>
-              <ImgDownload />
+            <div className={`content-item__duration-stripe ${audioPlayer ? 'full' : null}`}>
+              <div style={styleForPlaying} className='content-item__duration-stripe__going'></div>
             </div>
-            <div className='content-item__duration-close search-open__close'>
+            <div className='content-item__duration-download' onClick={getAudio}>
+              {loadingAudio ? (
+                <div className='loader-image'>
+                  <ImgLoader />
+                </div>
+              ) : !audioPlayer ? (
+                <ImgDownload />
+              ) : null}
+            </div>
+            <div onClick={clearAudio} className='content-item__duration-close search-open__close'>
               <ImgClose />
             </div>
           </div>
         ) : null}
       </div>
-      <div className='content-item__duration eight duration-close'>{durationCall}</div>
+      <div
+        className='content-item__duration eight duration-close'
+        style={audioPlayer ? { display: 'none' } : {}}
+      >
+        {durationCall}
+      </div>
     </div>
   )
 }
 
 export default ContentItem
-
-function handleSound() {
-  console.log(phonetics)
-  if (phonetics.length) {
-    const sound = phonetics[0]
-    if (sound.audio) {
-      new Audio(sound.audio).play()
-    }
-  }
-}

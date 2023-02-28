@@ -611,10 +611,26 @@ main {
 .content-item__duration-stripe:hover {
   background-color: #8a9cbc;
 }
+.content-item__duration-stripe.full {
+  background-color: #8a9cbc;
+}
+.content-item__duration-stripe__going {
+  height: 4px;
+  border-radius: 2px;
+  background-color: #005ff8;
+}
 .content-item__duration-download {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-hover {
   cursor: pointer;
 }
-.content-item__duration-download:hover svg path {
+.download-hover:hover svg path {
   fill: #005ff8;
   transition: all 0.3s ease 0s;
 }
@@ -635,7 +651,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 2px;
   cursor: pointer;
 }
 .play-btn:hover {
@@ -645,6 +660,11 @@ main {
 .play-btn:hover svg path {
   fill: #fff;
   transition: all 0.3s ease 0s;
+}
+.play-btn__pause {
+  width: 10px;
+  height: 10px;
+  background-color: #0000f4;
 }
 
 .content-date {
@@ -848,6 +868,7 @@ main {
   width: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 50px;
   align-items: center;
 }
