@@ -8,13 +8,15 @@ import Company from './Header/Company'
 import User from './Header/User'
 
 const Header = ({ dataForHeader }) => {
+  const getSearchValue = () => {}
+
   return (
     <header className='header'>
       <div className='wrapper'>
         <CurrentDate />
         <Parameters />
         <div className='search'>
-          <Search />
+          <Search getSearchValue={getSearchValue} />
         </div>
         <Company dataForHeader={dataForHeader} />
         <User />

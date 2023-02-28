@@ -1,18 +1,21 @@
-const fetchRequest = async (start, end, offset = 0) => {
-  console.log(start, end)
-  const _apiBase = 'https://api.skilla.ru/mango/getList'
-  const _token = 'testtoken'
-  const _params = {
-    date_start: start,
-    date_end: end,
-    offset: offset,
+const fetchRequest = async (start = '', end = '', offset = 0, search = '') => {
+  // console.log(start, end)
+  let _url = new URL('https://api.skilla.ru/mango/getList')
+
+  if (start || end) {
+    _url.searchParams.append('date_start', start)
+    _url.searchParams.append('date_end', end)
   }
-  let _url = _apiBase
-  if (start && end) {
-    _url = `${_apiBase}?date_start=${_params.date_start}&date_end=${_params.date_end}&offset=${_params.offset}`
+  if (offset) {
+    _url.searchParams.append('offset', offset)
+  }
+  if (search) {
+    _url.searchParams.append('search', search)
   }
 
-  console.log(_url)
+  const _token = 'testtoken'
+
+  console.log(_url.href)
 
   const headersList = {
     Accept: '*/*',
@@ -36,3 +39,17 @@ const fetchRequest = async (start, end, offset = 0) => {
 }
 
 export default fetchRequest
+
+// console.log(start, end)
+// const _apiBase = 'https://api.skilla.ru/mango/getList'
+// const _token = 'testtoken'
+// const _params = {
+//   date_start: start,
+//   date_end: end,
+//   offset: offset,
+//   // search: search,
+// }
+// let _url = _apiBase
+// if (start && end) {
+//   _url = `${_apiBase}?date_start=${_params.date_start}&date_end=${_params.date_end}&offset=${_params.offset}`
+// }

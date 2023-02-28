@@ -10,14 +10,14 @@ const MainContent = ({ getDataForHeader }) => {
   const [loading, setLoading] = useState(false)
   const [totalRows, setTotalRows] = useState(null)
   const [offset, setOffset] = useState(0)
+  const [searchValue, setSearchValue] = useState('')
   const [periodForRequest, setPeriodForRequest] = useState({
     date_start: '',
     date_end: '',
   })
 
-  const onRequestFirst = async (start, end) => {
-    setLoading(true)
-    const result = await fetchRequest(start, end)
+  const onRequestFirst = async (start, end, offset, search) => {
+    const result = await fetchRequest(start, end, offset, search)
     setLoading(false)
     console.log(result)
     setTotalRows(Number(result.total_rows))
@@ -25,20 +25,21 @@ const MainContent = ({ getDataForHeader }) => {
   }
   useEffect(() => {
     if (!periodForRequest.date_start || !periodForRequest.date_end) return
-    onRequestFirst(periodForRequest.date_start, periodForRequest.date_end)
-  }, [periodForRequest])
+    setLoading(true)
+    onRequestFirst(periodForRequest.date_start, periodForRequest.date_end, offset, searchValue)
+  }, [periodForRequest, searchValue])
 
   useEffect(() => {
-    const onRequestNext = async (start, end, offset) => {
+    const onRequestNext = async (start, end, offset, search) => {
       if (!offset) return
-      setLoading(true)
-      const result = await fetchRequest(start, end, offset)
+      const result = await fetchRequest(start, end, offset, search)
       setLoading(false)
       console.log(result)
       setTotalRows(Number(result.total_rows))
       setData([...data, ...result.results])
     }
-    onRequestNext(periodForRequest.date_start, periodForRequest.date_end, offset)
+    setLoading(true)
+    onRequestNext(periodForRequest.date_start, periodForRequest.date_end, offset, searchValue)
   }, [offset])
 
   const getPeriodForRequest = (start, end) => {
@@ -50,8 +51,9 @@ const MainContent = ({ getDataForHeader }) => {
       if (e.target.documentElement) {
         const { scrollTop, scrollHeight, clientHeight } = e.target.documentElement
         if (scrollTop + clientHeight >= scrollHeight - 50 && totalRows > offset + 50) {
-          if (loading) return
-          setOffset((offset) => offset + 50)
+          if (!loading) {
+            setOffset(offset + 50)
+          }
         }
       }
     }
@@ -68,10 +70,18 @@ const MainContent = ({ getDataForHeader }) => {
     getDataForHeader(partnerName)
   }, [data])
 
+  const clearOffset = () => {
+    setOffset(0)
+  }
+
+  const getSearchValue = (value) => {
+    setSearchValue(value)
+  }
+
   return (
     <main>
-      <Info loading={loading} getPeriodForRequest={getPeriodForRequest} />
-      <Filtering />
+      <Info loading={loading} getPeriodForRequest={getPeriodForRequest} clearOffset={clearOffset} />
+      <Filtering getSearchValue={getSearchValue} />
       <SpreadSheet data={data} loading={loading} />
     </main>
   )

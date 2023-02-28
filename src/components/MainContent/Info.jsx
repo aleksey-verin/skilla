@@ -1,11 +1,11 @@
-import { add, format, sub } from 'date-fns'
+import { format, sub } from 'date-fns'
 import React, { useEffect, useRef, useState } from 'react'
 import Loader from '../commonUI/Loader'
 import ImgArrow from '../images/ImgArrow'
 import ImgCalendar from '../images/ImgCalendar'
 import ImgPlus from '../images/ImgPlus'
 
-const Info = ({ getPeriodForRequest, loading }) => {
+const Info = ({ getPeriodForRequest, loading, clearOffset }) => {
   const menuItems = ['3 дня', 'Неделя', 'Месяц', 'Год', 'Период']
   const menuItemsLength = menuItems.length
   const [three, week, month, year, custom] = menuItems
@@ -24,6 +24,7 @@ const Info = ({ getPeriodForRequest, loading }) => {
   const handleClick = (e) => {
     if (e.target.textContent !== activeItem) {
       console.log(e.target.textContent)
+      clearOffset()
       setActiveItem(e.target.textContent)
       setMenuOpen(false)
     }

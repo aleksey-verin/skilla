@@ -451,7 +451,7 @@ main {
 .search-calls {
   display: flex;
   gap: 12px;
-  width: 400px;
+  width: 300px; //=================
 }
 
 .filter {
@@ -589,6 +589,9 @@ main {
     align-items: flex-start;
     justify-content: center;
     line-height: 21px;
+    & :nth-child(2) {
+      color: #5e7793;
+    }
   }
 
   &__source {
@@ -596,7 +599,7 @@ main {
     padding-right: 7px;
   }
   &:hover {
-    background-color: #eaf0fa;
+    background-color: rgba(212, 223, 243, 0.17);
   }
   &:hover &__score {
     & .block-info {
@@ -609,6 +612,73 @@ main {
   &:hover .img-phone {
     cursor: pointer;
     opacity: 1;
+  }
+  &:hover .duration-open {
+    display: block;
+  }
+  &:hover .duration-close {
+    display: none;
+  }
+
+  &__duration {
+    min-width: 350px;
+    margin-left: 10px;
+    &-block {
+      height: 48px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: #eaf0fa;
+    }
+    &-close {
+      cursor: pointer;
+    }
+    &-stripe {
+      width: 164px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: #adbfdf;
+      cursor: pointer;
+      &:hover {
+        background-color: #8a9cbc;
+      }
+    }
+    &-download {
+      cursor: pointer;
+      &:hover svg path {
+        fill: #005ff8;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+}
+
+.duration-open {
+  display: none;
+}
+.duration-close {
+  display: block;
+}
+
+.play-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: #005ff8;
+    transition: all 0.3s ease 0s;
+  }
+  &:hover svg path {
+    fill: #fff;
+    transition: all 0.3s ease 0s;
   }
 }
 

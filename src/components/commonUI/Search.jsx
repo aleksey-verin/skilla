@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import ImgClose from '../images/ImgClose'
 import ImgSearch from '../images/ImgSearch'
 
-const Search = ({ type = '', text = '' }) => {
+const Search = ({ getSearchValue, type = '', text = '' }) => {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState('')
   const inputRef = useRef(null)
@@ -14,10 +14,12 @@ const Search = ({ type = '', text = '' }) => {
 
   const handleInputValue = (e) => {
     setValue(e.target.value)
+    getSearchValue(e.target.value)
   }
 
   const clearInput = () => {
     setValue('')
+    getSearchValue('')
     inputRef.current.focus()
   }
 
@@ -42,32 +44,32 @@ const Search = ({ type = '', text = '' }) => {
   }, [formRef, value])
 
   return (
-    <div className="search-block">
+    <div className='search-block'>
       {open ? (
         <form ref={formRef} className={`search-open ${type}`}>
-          <div className="search-open__pic">
+          <div className='search-open__pic'>
             <ImgSearch />
           </div>
           <input
             ref={inputRef}
             onChange={handleInputValue}
             value={value}
-            type="text"
-            placeholder="Найти.."
+            type='tel'
+            placeholder='Найти..'
           />
           {value ? (
-            <div className="search-open__close" onClick={clearInput}>
+            <div className='search-open__close' onClick={clearInput}>
               <ImgClose />
             </div>
           ) : null}
         </form>
       ) : (
         <div className={`search-hide ${type}`}>
-          <div className="search-hide__pic" onClick={handleOpen}>
+          <div className='search-hide__pic' onClick={handleOpen}>
             <ImgSearch />
           </div>
           {text ? (
-            <div className="search-hide__text" onClick={handleOpen}>
+            <div className='search-hide__text' onClick={handleOpen}>
               {text}
             </div>
           ) : null}

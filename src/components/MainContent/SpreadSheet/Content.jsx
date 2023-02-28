@@ -20,6 +20,8 @@ const Content = ({ data, allChecked, loading }) => {
             person_avatar={item.person_avatar}
             from_number={item.from_number}
             to_number={item.to_number}
+            contact_name={item.contact_name}
+            contact_company={item.contact_company}
             from_site={item.from_site}
             source={item.source}
             status={item.status}
@@ -27,6 +29,8 @@ const Content = ({ data, allChecked, loading }) => {
             results={item.results}
             time={item.time}
             allChecked={allChecked}
+            record={item.record}
+            partnership_id={item.partnership_id}
           />
         )
 
