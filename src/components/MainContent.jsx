@@ -52,7 +52,7 @@ const MainContent = ({ getDataForHeader }) => {
         const { scrollTop, scrollHeight, clientHeight } = e.target.documentElement
         if (scrollTop + clientHeight >= scrollHeight - 50 && totalRows > offset + 50) {
           if (!loading) {
-            setOffset(offset + 50)
+            setOffset(() => offset + 50)
           }
         }
       }

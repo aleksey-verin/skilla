@@ -105,10 +105,6 @@ const ContentItem = ({ data, allChecked }) => {
     setCurrentTime(0)
   }
 
-  // const styleLoading = {
-  //   width: '20%',
-  // }
-
   return (
     <div className='content-item'>
       <div style={checked ? { opacity: '1' } : null} className='content-item__checkbox zero'>
