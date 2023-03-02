@@ -20,7 +20,7 @@ body {
 .sidebar {
   min-width: 240px;
   background-color: #091336;
-  height: auto;
+  min-height: 100vh;
 }
 
 .logo {
@@ -787,6 +787,7 @@ main {
 .recognize-btn {
   width: 122px;
   height: 40px;
+  font-size: 14px;
   color: #005ff8;
   background: #ffffff;
   border: 1px solid #002cfb;
