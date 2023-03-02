@@ -1,17 +1,6 @@
 import React from 'react'
 
-const ImgDownload = ({ color }) => {
-  switch (color) {
-    case 'loaded':
-      return '#79de9b'
-    case 'loaded':
-      return '#79de9b'
-    case 'loaded':
-      return '#79de9b'
-    default:
-      break
-  }
-
+const ImgDownload = () => {
   return (
     <div className='download-hover'>
       <svg
