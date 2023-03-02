@@ -1,5 +1,15 @@
-const fetchRequest = async (start = '', end = '', offset = 0, search = '') => {
-  // console.log(start, end)
+const fetchRequest = async (
+  start = '',
+  end = '',
+  offset = 0,
+  search = '',
+  in_out = '',
+  from_type = '',
+  person_id = '',
+  sources = '',
+  errors = ''
+) => {
+  console.log(person_id)
   let _url = new URL('https://api.skilla.ru/mango/getList')
 
   if (start || end) {
@@ -11,6 +21,21 @@ const fetchRequest = async (start = '', end = '', offset = 0, search = '') => {
   }
   if (search) {
     _url.searchParams.append('search', search)
+  }
+  if (in_out) {
+    _url.searchParams.append('in_out', in_out)
+  }
+  if (from_type) {
+    _url.searchParams.append('from_type[] ', from_type)
+  }
+  if (person_id) {
+    _url.searchParams.append('from_persons[]', person_id)
+  }
+  if (sources) {
+    _url.searchParams.append('sources[]', sources)
+  }
+  if (errors) {
+    _url.searchParams.append('errors[]', errors)
   }
 
   const _token = 'testtoken'

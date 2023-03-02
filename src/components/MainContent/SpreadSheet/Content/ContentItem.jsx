@@ -37,7 +37,7 @@ const ContentItem = ({ data, allChecked }) => {
     record,
     partnership_id,
   } = data
-
+  console.log(errors, ...results)
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {

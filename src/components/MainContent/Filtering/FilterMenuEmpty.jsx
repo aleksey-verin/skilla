@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ImgArrow from '../images/ImgArrow'
+import ImgArrow from '../../images/ImgArrow'
+// import filters from '../../services/constants'
 
-const FilterMenu = () => {
-  const menuItems = [{ name: '3 дня' }, { name: 'Неделя' }, { name: 'Месяц' }, { name: 'Год' }]
-  // const [three, week, month, year] = menuItems
+const FilterMenu = ({ getFilter, filter, menuItems }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(menuItems[0].name)
 
@@ -34,21 +33,26 @@ const FilterMenu = () => {
   }
 
   return (
-    <div ref={menu} className='period'>
-      <div onClick={() => setMenuOpen(!menuOpen)} className='period-days'>
-        <div className='period-days__text'>{activeItem}</div>
+    <div ref={menu} className='filter' onClick={() => setMenuOpen(!menuOpen)}>
+      <div className='filter-item'>
+        <div
+          className='filter-item__text'
+          style={activeItem !== menuItems[0].name ? { color: '#005FF8' } : {}}
+        >
+          {activeItem}
+        </div>
       </div>
       <button onClick={openMenu} className='btn-arrow'>
-        <ImgArrow direction='btn-down' />
+        {menuOpen ? <ImgArrow direction='btn-up' /> : <ImgArrow direction='btn-down' />}
       </button>
       {menuOpen && (
-        <div className='period-menu'>
-          <div className='period-menu__menu' onClick={handleClick}>
+        <div className='filter-menu'>
+          <div className='filter-menu__menu' onClick={handleClick}>
             {menuItems.map((item) => {
               return (
                 <div
                   key={item.name}
-                  className={`period-menu__item ${activeItem === item.name ? 'active' : ''}`}
+                  className={`filter-menu__item ${activeItem === item.name ? 'active' : ''}`}
                 >
                   {item.name}
                 </div>
