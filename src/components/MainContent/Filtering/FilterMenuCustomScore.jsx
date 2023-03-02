@@ -1,14 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ImgArrow from '../../images/ImgArrow'
-import Score from '../SpreadSheet/Content/Score/Score'
 import ScoreDots from '../SpreadSheet/Content/Score/ScoreDots'
 import ScoreText from '../SpreadSheet/Content/Score/ScoreText'
-// import filters from '../../services/constants'
 
 const FilterMenuCustomScore = ({ getFilter, filter, menuItems }) => {
-  //   { name: 'Все типы', request: '' },
-  //   { name: 'Входящие', request: '1' },
-  //   { name: 'Исходящие', request: '0' },
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(menuItems[0].name)
 
@@ -29,7 +24,6 @@ const FilterMenuCustomScore = ({ getFilter, filter, menuItems }) => {
 
   const handleClick = (e) => {
     if (e.target.textContent !== activeItem) {
-      console.log(e.target.textContent)
       setActiveItem(e.target.textContent)
       setMenuOpen(false)
     }

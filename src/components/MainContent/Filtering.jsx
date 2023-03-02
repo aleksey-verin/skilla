@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import ImgArrow from '../images/ImgArrow'
+import React from 'react'
 import Search from '../commonUI/Search'
 import FilterMenu from './Filtering/FilterMenu'
 import ImgClose from '../images/ImgClose'
@@ -22,18 +21,6 @@ const Filtering = ({
   getFilterByErrors,
   filterByErrors,
 }) => {
-  // const [inputValue, setInputValue] = useState('')
-  // const [valueForSearch, setValueForSearch] = useState('')
-
-  // const handleInput = (e) => {
-  //   let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/)
-  //   e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '')
-  //   setInputValue(e.target.value)
-  //   setValueForSearch(x[0])
-  //   console.log(x[0])
-  //   // ======================================
-  // }
-
   const resetFilters = () => {
     getFilterByInOutCalls('')
     getFilterByTypeCalls('')
@@ -47,13 +34,6 @@ const Filtering = ({
       <div className='search-calls'>
         <Search getSearchValue={getSearchValue} type='calls' text='Поиск по звонкам' />
       </div>
-      {/* <input
-        onInput={handleInput}
-        type='text'
-        id='phone'
-        placeholder='Введите номер..'
-        value={inputValue}
-      /> */}
       <div className='filters'>
         {filterByInOutCalls ||
         filterByEmployees ||
@@ -102,8 +82,3 @@ const Filtering = ({
 }
 
 export default Filtering
-
-// document.getElementById('phone').addEventListener('input', function (e) {
-//   var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-//   e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-// });

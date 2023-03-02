@@ -5,9 +5,6 @@ import ImgPhone from '../../../images/ImgPhone'
 import ImgWeb from '../../../images/ImgWeb'
 import ImgDownload from '../../../images/ImgDownload'
 import ImgPlay from '../../../images/ImgPlay'
-// import Score from './Content/Score'
-import employee from '../../../../assets/images/employee.png'
-import Score from './Score/Score'
 import { format, parseISO, secondsToMilliseconds } from 'date-fns'
 import { formatPhoneNumber, getImageCall } from '../../../../services/helpers'
 import noavatar from '../../../../assets/images/noavatar.jpg'
@@ -37,7 +34,6 @@ const ContentItem = ({ data, allChecked }) => {
     record,
     partnership_id,
   } = data
-  console.log(errors, ...results)
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {

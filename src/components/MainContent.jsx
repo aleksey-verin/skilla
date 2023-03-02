@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import fetchRequest from '../services/fetch'
 import mockPersons from '../services/mockData'
-import Loader from './commonUI/Loader'
 import Filtering from './MainContent/Filtering'
 import Info from './MainContent/Info'
 import SpreadSheet from './MainContent/SpreadSheet'
@@ -46,7 +45,6 @@ const MainContent = ({ getDataForHeader }) => {
       errors
     )
     setLoading(false)
-    console.log(result)
     setTotalRows(Number(result.total_rows))
     setData(result.results)
   }
@@ -99,7 +97,6 @@ const MainContent = ({ getDataForHeader }) => {
         errors
       )
       setLoading(false)
-      console.log(result)
       setTotalRows(Number(result.total_rows))
       setData([...data, ...result.results])
     }
@@ -183,12 +180,11 @@ const MainContent = ({ getDataForHeader }) => {
   const getSearchValue = (value) => {
     setSearchValue(value)
   }
-  //=================================
+
   useEffect(() => {
     const arrayUniqueById = [...new Map(data.map((item) => [item.person_id, item])).values()]
     const newArray = arrayUniqueById.map((item) => {
       return {
-        // name: 'Входящие', request: '1'
         name: `${item.person_name} ${item.person_surname.slice(0, 1)}.`,
         request: item.person_id,
         id: item.person_id,
@@ -207,9 +203,7 @@ const MainContent = ({ getDataForHeader }) => {
     })
     setEmployeesData(mockDataPersons)
   }, [data])
-  // console.log(arrayUniqueByKey)
 
-  //===============================
   return (
     <main>
       <Info loading={loading} getPeriodForRequest={getPeriodForRequest} clearOffset={clearOffset} />

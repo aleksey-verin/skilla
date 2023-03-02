@@ -1,5 +1,4 @@
 import React from 'react'
-import ImgArrow from './images/ImgArrow'
 import Search from './commonUI/Search'
 
 import CurrentDate from './Header/CurrentDate'
@@ -18,8 +17,10 @@ const Header = ({ dataForHeader }) => {
         <div className='search'>
           <Search getSearchValue={getSearchValue} />
         </div>
-        <Company dataForHeader={dataForHeader} />
-        <User />
+        <div className='user-block'>
+          <Company dataForHeader={dataForHeader} />
+          <User />
+        </div>
       </div>
     </header>
   )

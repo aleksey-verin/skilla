@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ImgArrow from '../../images/ImgArrow'
-// import filters from '../../services/constants'
 
 const FilterMenu = ({ getFilter, filter, menuItems }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -10,7 +9,6 @@ const FilterMenu = ({ getFilter, filter, menuItems }) => {
 
   const handleClick = (e) => {
     if (e.target.textContent !== activeItem) {
-      console.log(e.target.textContent)
       setActiveItem(e.target.textContent)
       setMenuOpen(false)
     }

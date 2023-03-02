@@ -1,5 +1,4 @@
 const fetchAudio = async (record, partnership_id) => {
-  console.log('fetch', record, partnership_id)
   const _url = new URL('https://api.skilla.ru/mango/getRecord')
 
   if (record || partnership_id) {
@@ -13,16 +12,16 @@ const fetchAudio = async (record, partnership_id) => {
     'Content-Type': 'audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3',
     'Content-Transfer-Encoding': 'binary',
     'Content-Disposition': 'filename="record.mp3"',
-    'Authorization': `Bearer ${_token}`,
-    'Accept': '*/*',
-    'Access-Control-Allow-Credentials': 'true'
+    Authorization: `Bearer ${_token}`,
+    Accept: '*/*',
+    'Access-Control-Allow-Credentials': 'true',
   }
 
   const proxy = 'https://cors-anywhere.herokuapp.com/'
   const url = `${proxy}${_url}`
 
-  const response = await fetch( url, { method: 'POST', headers: headersList, })
-  const audioBlob = await response.blob();
-  return URL.createObjectURL(audioBlob);
+  const response = await fetch(url, { method: 'POST', headers: headersList })
+  const audioBlob = await response.blob()
+  return URL.createObjectURL(audioBlob)
 }
 export default fetchAudio

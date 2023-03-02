@@ -1,15 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ImgArrow from '../../images/ImgArrow'
-// import filters from '../../services/constants'
 
 const FilterMenuCustomEmployees = ({ getFilter, filter, employeesData }) => {
-  // const menuItems = ['Все типы', 'Входящие', 'Исходящие']
   const menuItems = [{ name: 'Все сотрудники', request: '' }, ...employeesData]
-  //   { name: 'Все типы', request: '' },
-  //   { name: 'Входящие', request: '1' },
-  //   { name: 'Исходящие', request: '0' },
-  // ]
-  // console.log(menuItems)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(menuItems[0].name)
 
@@ -30,7 +23,6 @@ const FilterMenuCustomEmployees = ({ getFilter, filter, employeesData }) => {
 
   const handleClick = (e) => {
     if (e.target.textContent !== activeItem) {
-      console.log(e.target.textContent)
       setActiveItem(e.target.textContent)
       setMenuOpen(false)
     }

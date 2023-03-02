@@ -23,7 +23,6 @@ const Info = ({ getPeriodForRequest, loading, clearOffset }) => {
 
   const handleClick = (e) => {
     if (e.target.textContent !== activeItem) {
-      console.log(e.target.textContent)
       clearOffset()
       setActiveItem(e.target.textContent)
       setMenuOpen(false)

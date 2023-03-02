@@ -142,6 +142,7 @@ body {
   align-items: center;
   justify-content: space-between;
   font-size: 15px;
+  gap: 10px;
 }
 
 .current-date {
@@ -151,7 +152,6 @@ body {
 .parameters {
   display: flex;
   gap: 50px;
-  margin-left: 60px;
 }
 
 .parameter {
@@ -209,7 +209,6 @@ body {
 
 .search {
   flex: 0 0 auto;
-  min-width: 300px;
   max-width: 400px;
 }
 
@@ -299,10 +298,22 @@ body {
   cursor: pointer;
 }
 
+.user-block {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .company {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+}
+.company-name {
+  text-align: center;
+}
+.company svg {
+  min-width: 12px;
 }
 
 .user {
@@ -440,6 +451,7 @@ main {
   display: flex;
   color: #5e7793;
   font-size: 14px;
+  gap: 15px;
   align-items: center;
   justify-content: space-between;
 }
@@ -447,12 +459,12 @@ main {
 .search-calls {
   display: flex;
   gap: 12px;
-  width: 300px;
 }
 
 .filters {
   display: flex;
   gap: 32px;
+  align-items: center;
 }
 
 .filter-item__close {
@@ -478,6 +490,7 @@ main {
 }
 .filter-item {
   display: flex;
+  text-align: center;
 }
 .filter-menu {
   position: absolute;
@@ -568,7 +581,7 @@ main {
 }
 
 .eight {
-  flex: 1 1 23%;
+  flex: 1 0 23%;
   text-align: right;
 }
 
@@ -646,7 +659,6 @@ main {
   display: none;
 }
 .content-item__duration {
-  min-width: 350px;
   margin-left: 10px;
 }
 .content-item__duration-block {
@@ -657,12 +669,13 @@ main {
   justify-content: space-between;
   padding: 0 20px;
   background: #eaf0fa;
+  gap: 5px;
 }
 .content-item__duration-close {
   cursor: pointer;
 }
 .content-item__duration-stripe {
-  width: 164px;
+  flex: 1 1 60%;
   height: 4px;
   border-radius: 2px;
   background-color: #adbfdf;

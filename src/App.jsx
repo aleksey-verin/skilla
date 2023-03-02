@@ -2,7 +2,7 @@ import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import MainContent from './components/MainContent'
 import './App.css'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 function App() {
   const [dataForHeader, setDataForHeader] = useState('')

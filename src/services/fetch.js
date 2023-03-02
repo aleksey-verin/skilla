@@ -9,7 +9,6 @@ const fetchRequest = async (
   sources = '',
   errors = ''
 ) => {
-  console.log(person_id)
   let _url = new URL('https://api.skilla.ru/mango/getList')
 
   if (start || end) {
@@ -39,8 +38,6 @@ const fetchRequest = async (
   }
 
   const _token = 'testtoken'
-
-  console.log(_url.href)
 
   const headersList = {
     Accept: '*/*',
