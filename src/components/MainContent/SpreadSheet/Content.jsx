@@ -1,5 +1,4 @@
 import React from 'react'
-import { groupDataByDate } from '../../../services/helpers'
 import Loader from '../../commonUI/Loader'
 import ContentDate from './Content/ContentDate'
 

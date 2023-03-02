@@ -1,6 +1,6 @@
 import React from 'react'
 import { format } from 'date-fns'
-import { da, ru } from 'date-fns/locale'
+import { ru } from 'date-fns/locale'
 
 const CurrentDate = () => {
   const date = format(new Date(), 'cccc, d MMM', { locale: ru })

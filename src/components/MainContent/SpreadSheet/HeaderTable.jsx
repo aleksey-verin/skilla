@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ImgCheckbox from '../../images/ImgCheckbox'
 
 const HeaderTable = ({ checked, handleCheckbox }) => {

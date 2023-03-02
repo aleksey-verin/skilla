@@ -75,11 +75,6 @@ const Search = ({ getSearchValue, type = '', text = '' }) => {
           ) : null}
         </div>
       )}
-
-      {/* <div className={`search-hide ${type}`}>
-        <ImgSearch />
-        <div className="search-hide__text">{text}</div>
-      </div> */}
     </div>
   )
 }
