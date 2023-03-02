@@ -8,7 +8,6 @@ body {
   font-size: 15px;
   overflow-x: auto;
   min-height: 100vh;
-  
 }
 
 .App {
@@ -16,6 +15,7 @@ body {
   width: 100%;
   display: flex;
   height: 100%;
+  min-width: 1197px;
 }
 
 // ===============  LEFT-SIDE MENU  ===============
@@ -391,7 +391,6 @@ main {
     width: 200px;
     height: auto;
     z-index: 2;
-    // margin: 20px;
     box-sizing: border-box;
     background: #ffffff;
     border: 1px solid #eaf0fa;
@@ -403,7 +402,6 @@ main {
       display: flex;
       flex-direction: column;
       color: #899cb1;
-      // margin-bottom: 10px;
     }
     &__item {
       height: 40px;
@@ -421,7 +419,6 @@ main {
     }
     &__calendar {
       padding: 20px;
-      // display: flex;
     }
     &__dates {
       margin-top: 10px;
@@ -467,7 +464,6 @@ main {
 .search-calls {
   display: flex;
   gap: 12px;
-  // width: 300px; //=================
 }
 
 .filters {
@@ -556,54 +552,35 @@ main {
   }
 }
 .zero {
-  flex: 1 1 3%;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // flex: 1 1 3.7%;
-  // width: 50px;
+  flex: 1 0 3%;
 }
 .one {
-  flex: 1 1 3%;
-  // flex: 1 1 3.7%;
-  // width: 50px;
+  flex: 1 0 3%;
 }
 .two {
-  flex: 1 1 5%;
-  // flex: 1 1 6.6%;
-  // width: 90px;
+  flex: 1 0 5%;
 }
 .three {
-  flex: 1 1 7%;
-  // flex: 1 1 10.9%;
-  // width: 125px;
+  flex: 1 0 7%;
 }
 .four {
   // flex: 1 1 5%;
-  width: 70px;
+  min-width: 70px;
   padding-right: 10px;
-  // width: 330px;
 }
 .five {
-  flex: 1 1 23%;
-  // width: 330px;
+  flex: 1 0 23%;
 }
 .six {
-  flex: 1 1 16%;
-  // flex: 1 1 15.8%;
-  // width: 215px;
+  flex: 1 0 16%;
 }
 .seven {
-  flex: 1 1 12%;
-  // flex: 1 1 14.6%;
-  // width: 200px;
+  flex: 1 0 12%;
 }
 .eight {
   flex: 1 0 23%;
   text-align: right;
-  // width: 350px;
 }
-// 1365 всего
 
 .zero-type {
   opacity: 0;
@@ -684,7 +661,6 @@ main {
   }
 
   &__duration {
-    // min-width: 350px;
     margin-left: 10px;
     &-block {
       height: 48px;
@@ -700,7 +676,6 @@ main {
       cursor: pointer;
     }
     &-stripe {
-      // width: 164px;
       flex: 1 1 60%;
       height: 4px;
       border-radius: 2px;
