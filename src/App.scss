@@ -751,11 +751,11 @@ main {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &:hover {
+  &:hover.active {
     background-color: #005ff8;
     transition: all 0.3s ease 0s;
   }
-  &:hover svg path {
+  &:hover.active svg path {
     fill: #fff;
     transition: all 0.3s ease 0s;
   }

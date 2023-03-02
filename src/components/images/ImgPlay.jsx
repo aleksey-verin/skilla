@@ -2,7 +2,7 @@ import React from 'react'
 
 const ImgPlay = ({ playing, audioPlayer }) => {
   return (
-    <div className='play-btn'>
+    <div className={`play-btn ${audioPlayer ? 'active' : ''}`}>
       {playing ? (
         <div className='play-btn__pause'></div>
       ) : (

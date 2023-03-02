@@ -160,7 +160,9 @@ const ContentItem = ({ data, allChecked }) => {
               ) : null}
             </div>
             <div onClick={clearAudio} className='content-item__duration-close search-open__close'>
+            {audioPlayer ? (
               <ImgClose />
+            ) : null}
             </div>
           </div>
         ) : null}
